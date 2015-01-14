@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="log.base" value="../logs/log" />
+	<jmxConfigurator />
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{80}.[%thread] %caller{0} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 需要记录日志的包 -->
+	<logger name="ch.qos.logback">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="org.springframework">
+		<level value="DEBUG" />
+	</logger>
+	
+	<logger name="com.project">
+		<level value="DEBUG"/>
+	</logger>
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+		<!-- <appender-ref ref="logfile" /> -->
+	</root>
+</configuration>

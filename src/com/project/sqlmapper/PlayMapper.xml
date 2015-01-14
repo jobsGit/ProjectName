@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.project.mapper.play.PlayMapper">
+	<!-- 用户登录SQL -->
+	<select id="userLogin" parameterType="java.util.HashMap" resultType="com.project.pojo.Test">
+		select id,name,age from bvc_test where name=#{userName} and age=#{userAge}
+	</select>
+	
+	<!-- 添加用户数据 -->
+	<insert id="addUser" parameterType="java.util.HashMap">
+		insert into bvc_test(name,age) values(#{userName},#{userAge})  
+		<selectKey resultType="java.lang.Integer" keyProperty="id">    
+	          <![CDATA[SELECT @@IDENTITY AS ID ]]>
+		</selectKey>
+	</insert>
+	
+	<!-- 查询用户数据 -->
+	<select id="queryAll" parameterType="java.util.HashMap" resultType="com.project.pojo.Test">
+		select id,name,age from bvc_test where 1=1
+		<if test="id != null and id != ''"><![CDATA[and id = #{id}  ]]></if>
+	</select>
+	
+	<!-- 删除用户数据根据ID -->
+	<delete id="delUser" parameterType="java.util.HashMap">
+		delete from bvc_test where id = #{id}
+	</delete>
+	
+	<!-- 更新用户数据 -->
+	<update id="updUser" parameterType="java.util.HashMap">
+		update bvc_test set name=#{userName},age=#{userAge} where ID=#{id}
+	</update>
+	
+</mapper>
